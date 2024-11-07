@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles Flow Map</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.eclipticenterprises.com/wp-content/uploads/2024/03/earth-observation-1024x576.jpg'); /* Đặt link đến hình ảnh */
+            background-size: cover; /* Phủ đầy hình ảnh cho toàn bộ trang */
+            background-repeat: no-repeat; /* Không lặp lại hình ảnh */
+            background-position: center; /* Căn giữa hình ảnh */
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+        .graph-container, .video-container {
+            flex: 1;
+            /* margin: 10px; */
+        }
+        .graph-container {
+            max-width: 50%;
+        }
+        .video-container {
+            max-width: 50%;
+            text-align: center;
+        }
+        /* .result-container {
+            margin-top: 20px;
+        }
+        .result-container h2 {
+            margin-bottom: 10px;
+        } */
+        .no-data {
+            color: red;
+        }
+        .form-input {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-input label, .form-input select, .form-input input, .form-input button {
+            margin: 5px 0;
+        }
+        .model-selection-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .change-video-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .change-video-button button, .model-selection-container button {
+            padding: 8px 16px;
+            font-size: 100%;
+            margin: 20px 0;
+        }
+        /* Flex container for the two buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            margin: 0 auto;
+        }
+        .button-container button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 90px;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center; font-size: 50px; color:aliceblue ;">VEHICLES FLOW MAP</h1>
+
+    <!-- Nút Change Video và Load Model nằm kế bên nhau -->
+    <div class="button-container">
+        <!-- <div class="model-selection-container">
+            <form action="{{ url_for('index') }}" method="get" style="display: inline-flex; align-items: center;">
+                <select name="model_index" style="padding: 8px; font-size: 14px; margin-right: 10px;">
+                    <option value="" disabled selected>Select a model</option>
+                    <option value="0">SVM Model</option>
+                    <option value="1">Decision Tree Model</option>
+                    <option value="2">KNN Model</option>
+                    <option value="3">Linear Regression Model</option>
+                    <option value="4">Random Forest Model</option>
+                    <option value="5">XGBoost Model</option>
+                </select>
+                <button type="submit">Apply Model</button>
+            </form>
+            {% if selected_model_name %}
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Selected Model: {{ selected_model_name }}</p>
+            </div>
+            {% endif %}
+        </div> -->
+
+        <!-- {% if selected_model_name %}
+        <div style="text-align: center; margin-top: 20px;">
+            <p>Selected Model: {{ selected_model_name }}</p>
+        </div>
+        {% endif %} -->
+
+
+        <a href="{{ url_for('index', video_index=(video_index + 1) % 2) }}" style="margin-top: 35px; margin-left: -80px;">
+            <button type="button" style="text-align: center;">Change Video</button>
+        </a>
+    </div>
+
+    <!-- {% if selected_model_name %}
+        <div style="text-align: center; margin-top: 20px;">
+            <p>Selected Model: {{ selected_model_name }}</p>
+        </div>
+    {% endif %} -->
+
+    <!-- Biểu đồ và Video Stream -->
+    <div class="main-container">
+        <div class="flex-container" style="width: 900; height: 500; margin-top: 5px;">
+            <div class="graph-container">
+                <h2 style="text-align: center; font-size: 30px; color:blue; font-weight:bolder;">Choropleth Map</h2>
+                <div style="margin-left: 100px;">{{ graph_html | safe}}</div>
+            </div>
+
+            <div class="video-container">
+                <h3 style="text-align: center; font-size: 30px; color:blue; font-weight:bolder;">Live Stream</h3>
+                <img src="{{ url_for('video_feed') }}" width="750" height="560" style="margin-top: -10px;">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
