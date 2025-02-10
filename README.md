@@ -21,17 +21,7 @@
   Here's how the project is organized:
 </p>
 
----
-
-🙏 Acknowledgements
-<p align="center">
-Thank you for your interest in this project! If you find it helpful, please give it a star ⭐.
-Good luck with your real-time traffic counting endeavors! 🚦🚀
-</p>
-
-<p align="center">
-Made with ❤️ by Our Team
-</p>
+```
 ├── data/
 │ ├── traffic.csv
 │ └── map.geojson
@@ -51,4 +41,18 @@ Made with ❤️ by Our Team
 ├── yolov8s.pt
 ├── app.py
 ├── app_realtime.py
-└── traffic-prediction-detailed-eda.ipynb
+└── traffic-prediction-detailed-eda-modeling.ipynb
+```
+
+---
+
+🙏 Acknowledgements
+<p align="center">
+Thank you for your interest in this project! If you find it helpful, please give it a star ⭐.
+Good luck with your real-time traffic counting endeavors! 🚦🚀
+</p>
+
+<p align="center">
+Made with ❤️ by Our Team
+</p>
+
